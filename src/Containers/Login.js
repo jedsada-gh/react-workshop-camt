@@ -2,11 +2,26 @@ import React, { Component } from 'react';
 import { Form, Button, Input, Icon, message } from 'antd';
 import { withRouter } from 'react-router-dom';
 
+const KEY_USER_DATA = 'user_data';
+
 class Login extends Component {
   state = {
     email: '',
     password: ''
   };
+
+  navigateToMainPage = () => {
+    const { history } = this.props;
+    history.push('/movies');
+  };
+
+  componentDidMount() {
+    const jsonStr = localStorage.getItem(KEY_USER_DATA);
+    const isLoggedIn = jsonStr && JSON.parse(jsonStr).isLoggedIn;
+    if (isLoggedIn) {
+      // this.navigateToMainPage()
+    }
+  }
 
   onEmailChange = event => {
     const email = event.target.value;
@@ -29,12 +44,17 @@ class Login extends Component {
   }
 
   onSubmitFormLogin = e => {
-    const { history } = this.props;
     e.preventDefault();
     const isValid = this.validateEmail(this.state.email);
     const isValidePassword = this.validatePassword(this.state.password);
     if (isValid && isValidePassword) {
-      history.push('/movies');
+      localStorage.setItem(
+        KEY_USER_DATA,
+        JSON.stringify({
+          isLoggedIn: true
+        })
+      );
+      this.navigateToMainPage();
     } else {
       message.error('Email or Password invalid!', 1);
     }
@@ -42,7 +62,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div style={{ width: '100%' }}>
+      <div style={{ width: '30%', margin: '0 auto' }}>
         <h2>Login</h2>
         <Form onSubmit={this.onSubmitFormLogin}>
           <Form.Item>

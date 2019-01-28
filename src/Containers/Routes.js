@@ -5,7 +5,7 @@ import MainPage from './Main';
 
 function Routes() {
   return (
-    <div>
+    <div style={{ width: '100%' }}>
       <Route exact path="/" component={LoginPage} />
       <Route exact path="/movies" component={MainPage} />
     </div>
