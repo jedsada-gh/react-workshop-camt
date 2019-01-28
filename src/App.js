@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-
-import LoginPage from './Containers/Login'
+import Routes from './Containers/Routes';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <LoginPage/>
+        <Routes />
       </div>
     );
   }
