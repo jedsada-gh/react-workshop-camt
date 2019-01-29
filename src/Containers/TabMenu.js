@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import ListMovie from '../Components/ListMovie';
-import Profile from '../Components/favorite/list';
-import ListFavorite from '../Components/profile/index';
+import ListFavorite from '../Components/favorite/list';
+import Profile from '../Components/profile/index';
 
 function TabMenu(props) {
   return (
