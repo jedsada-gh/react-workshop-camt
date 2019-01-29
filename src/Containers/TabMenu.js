@@ -6,25 +6,23 @@ import ListFavorite from '../Components/profile/index';
 
 function TabMenu(props) {
   return (
-    <div>
-      <Switch>
-        <Route
-          path="/movies"
-          exact
-          render={() => {
-            return (
-              <ListMovie
-                items={props.items}
-                onItemMovieClick={props.onItemMovieClick}
-              />
-            );
-          }}
-        />
-        <Route path="/favorite" exact component={ListFavorite} />
-        <Route path="/profile" exact component={Profile} />
-        <Redirect from="/*" exact to="/" />
-      </Switch>
-    </div>
+    <Switch>
+      <Route
+        path="/movies"
+        exact
+        render={() => {
+          return (
+            <ListMovie
+              items={props.items}
+              onItemMovieClick={props.onItemMovieClick}
+            />
+          );
+        }}
+      />
+      <Route path="/favorite" exact component={ListFavorite} />
+      <Route path="/profile" exact component={Profile} />
+      <Redirect from="/*" exact to="/" />
+    </Switch>
   );
 }
 

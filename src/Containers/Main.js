@@ -3,7 +3,7 @@ import { Spin, Modal, Button, Layout, Menu } from 'antd';
 import TabMenu from './TabMenu';
 
 const { Header, Content, Footer } = Layout;
-const menus = ['home', 'favorite', 'profile'];
+const menus = ['movies', 'favorite', 'profile'];
 
 class Main extends Component {
   state = {
