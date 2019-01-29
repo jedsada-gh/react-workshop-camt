@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { Spin, Modal, Button } from 'antd';
-import ListMovie from '../Components/ListMovie';
+import { Spin, Modal, Button, Layout, Menu } from 'antd';
+import TabMenu from './TabMenu';
+
+const { Header, Content, Footer } = Layout;
+const menus = ['home', 'favorite', 'profile'];
 
 class Main extends Component {
   state = {
@@ -23,20 +26,68 @@ class Main extends Component {
   };
 
   componentDidMount() {
+    const { pathname } = this.props.location;
+    var pathName = menus[0];
+    if (pathname != '/') {
+      pathName = pathname.replace('/', '');
+      if (!menus.includes(pathName)) pathName = menus[0];
+    }
+    this.setState({ pathName });
     fetch('https://workshopup.herokuapp.com/movie')
       .then(response => response.json())
       .then(movies => this.setState({ items: movies.results }));
   }
+
+  onMenuClick = e => {
+    var path = '/';
+    if (e.key != 'home') {
+      path = `/${e.key}`;
+    }
+    this.setState({ isShowButtonAddMovie: e.key === 'home' });
+    this.props.history.replace(path);
+  };
 
   render() {
     const item = this.state.itemMovie;
     return (
       <div>
         {this.state.items.length > 0 ? (
-          <ListMovie
-            items={this.state.items}
-            onItemMovieClick={this.onItemMovieClick}
-          />
+          <div>
+            {' '}
+            <Layout className="layout" style={{ background: 'white' }}>
+              <Header
+                style={{
+                  padding: '0px',
+                  position: 'fixed',
+                  zIndex: 1,
+                  width: '100%'
+                }}
+              >
+                <Menu
+                  theme="light"
+                  mode="horizontal"
+                  defaultSelectedKeys={[this.state.pathName]}
+                  style={{ lineHeight: '64px' }}
+                  onClick={e => {
+                    this.onMenuClick(e);
+                  }}
+                >
+                  <Menu.Item key={menus[0]}>Home</Menu.Item>
+                  <Menu.Item key={menus[1]}>Favorite</Menu.Item>
+                  <Menu.Item key={menus[2]}>Profile</Menu.Item>
+                </Menu>
+              </Header>
+              <Content style={{ padding: '16px', marginTop: 64 }}>
+                <TabMenu
+                  items={this.state.items}
+                  onItemMovieClick={this.onItemMovieClick}
+                />
+              </Content>
+              <Footer style={{ textAlign: 'center', background: 'white' }}>
+                Movie Application Workshop @ CAMT
+              </Footer>
+            </Layout>
+          </div>
         ) : (
           <Spin size="large" />
         )}
