@@ -43,7 +43,6 @@ class Main extends Component {
     if (e.key != 'home') {
       path = `/${e.key}`;
     }
-    this.setState({ isShowButtonAddMovie: e.key === 'home' });
     this.props.history.replace(path);
   };
 
