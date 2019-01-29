@@ -4,7 +4,7 @@ import ListMovie from '../Components/ListMovie';
 import ListFavorite from '../Components/favorite/list';
 import Profile from '../Components/profile/index';
 
-function TabMenu(props) {
+function RouteMenu(props) {
   return (
     <Switch>
       <Route
@@ -26,4 +26,4 @@ function TabMenu(props) {
   );
 }
 
-export default TabMenu;
+export default RouteMenu;

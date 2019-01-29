@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Spin, Modal, Button, Layout, Menu } from 'antd';
-import TabMenu from './TabMenu';
+import RouteMenu from './RouteMenu';
 
 const { Header, Content, Footer } = Layout;
 const menus = ['movies', 'favorite', 'profile'];
@@ -77,7 +77,7 @@ class Main extends Component {
                 </Menu>
               </Header>
               <Content style={{ padding: '16px', marginTop: 64 }}>
-                <TabMenu
+                <RouteMenu
                   items={this.state.items}
                   onItemMovieClick={this.onItemMovieClick}
                 />
