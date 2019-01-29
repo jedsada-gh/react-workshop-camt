@@ -3,7 +3,7 @@ import { Spin, Modal, Button, Layout, Menu } from 'antd';
 import TabMenu from './TabMenu';
 
 const { Header, Content, Footer } = Layout;
-const menus = ['home', 'favorite', 'profile'];
+const menus = ['movies', 'favorite', 'profile'];
 
 class Main extends Component {
   state = {
@@ -52,7 +52,7 @@ class Main extends Component {
     return (
       <div>
         {this.state.items.length > 0 ? (
-          <div>
+          <div style={{ height: '100vh' }}>
             {' '}
             <Layout className="layout" style={{ background: 'white' }}>
               <Header
