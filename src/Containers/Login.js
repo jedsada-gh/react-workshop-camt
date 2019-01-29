@@ -19,7 +19,7 @@ class Login extends Component {
     const jsonStr = localStorage.getItem(KEY_USER_DATA);
     const isLoggedIn = jsonStr && JSON.parse(jsonStr).isLoggedIn;
     if (isLoggedIn) {
-      // this.navigateToMainPage()
+      this.navigateToMainPage();
     }
   }
 
