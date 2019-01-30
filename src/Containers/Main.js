@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Spin, Modal, Button, Layout, Menu } from 'antd';
+import { Spin, Modal, Button, Layout, Menu, message } from 'antd';
 import RouteMenu from './RouteMenu';
 
 const { Header, Content, Footer } = Layout;
@@ -10,7 +10,8 @@ class Main extends Component {
     items: [],
     isShowModal: false,
     itemMovie: null,
-    pathName: menus[0]
+    pathName: menus[0],
+    favItems: []
   };
 
   onItemMovieClick = item => {
@@ -27,6 +28,12 @@ class Main extends Component {
   };
 
   componentDidMount() {
+    const jsonStr = localStorage.getItem('list-fav');
+    if (jsonStr) {
+      const items = jsonStr && JSON.parse(jsonStr);
+      this.setState({ favItems: items });
+    }
+
     const { pathname } = this.props.location;
     var pathName = menus[0];
     if (pathname != '/') {
@@ -45,6 +52,24 @@ class Main extends Component {
       path = `/${e.key}`;
     }
     this.props.history.replace(path);
+  };
+
+  onClickFavorite = () => {
+    const itemClick = this.state.itemMovie;
+    const items = this.state.favItems;
+
+    const result = items.find(item => {
+      return item.title === itemClick.title;
+    });
+
+    if (result) {
+      message.error('This item added favorite', 1);
+    } else {
+      items.push(itemClick);
+      localStorage.setItem('list-fav', JSON.stringify(items));
+      message.success('Saved your favorite movie', 1);
+      this.onModalClickCancel();
+    }
   };
 
   render() {

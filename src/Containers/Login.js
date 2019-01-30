@@ -51,7 +51,8 @@ class Login extends Component {
       localStorage.setItem(
         KEY_USER_DATA,
         JSON.stringify({
-          isLoggedIn: true
+          isLoggedIn: true,
+          email: this.state.email
         })
       );
       this.navigateToMainPage();
