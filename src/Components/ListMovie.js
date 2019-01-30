@@ -9,7 +9,7 @@ function ListMovie(props) {
       dataSource={props.items}
       renderItem={item => (
         <List.Item>
-          <ItemMovie item={item} onItemMovieClick={props.onItemMovieClick} />
+          <ItemMovie item={item} />
         </List.Item>
       )}
     />

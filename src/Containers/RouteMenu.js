@@ -11,12 +11,7 @@ function RouteMenu(props) {
         path="/movies"
         exact
         render={() => {
-          return (
-            <ListMovie
-              items={props.items}
-              onItemMovieClick={props.onItemMovieClick}
-            />
-          );
+          return <ListMovie items={props.items} />;
         }}
       />
       <Route path="/favorite" exact component={ListFavorite} />

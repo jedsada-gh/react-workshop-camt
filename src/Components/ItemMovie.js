@@ -1,7 +1,19 @@
 import React from 'react';
 import { Card } from 'antd';
 import TextTruncate from 'react-text-truncate';
+import { connect } from 'react-redux';
+
 const { Meta } = Card;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onItemMovieClick: item =>
+      dispatch({
+        type: 'click_item',
+        payload: item
+      })
+  };
+};
 
 function ItemMovie(props) {
   const item = props.item;
@@ -28,4 +40,7 @@ function ItemMovie(props) {
   );
 }
 
-export default ItemMovie;
+export default connect(
+  null,
+  mapDispatchToProps
+)(ItemMovie);

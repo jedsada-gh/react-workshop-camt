@@ -1,30 +1,47 @@
 import React, { Component } from 'react';
 import { Spin, Modal, Button, Layout, Menu, message } from 'antd';
 import RouteMenu from './RouteMenu';
+import { connect } from 'react-redux';
 
 const { Header, Content, Footer } = Layout;
 const menus = ['movies', 'favorite', 'profile'];
 
+const mapStateToProps = state => {
+  return {
+    isShowDialog: state.isShowDialog,
+    itemMovieClick: state.itemMovieDetail
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onDismissDialog: () =>
+      dispatch({
+        type: 'dismiss_dialog'
+      }),
+    onItemMovieClick: item =>
+      dispatch({
+        type: 'click_item',
+        payload: item
+      })
+  };
+};
+
 class Main extends Component {
   state = {
     items: [],
-    isShowModal: false,
     itemMovie: null,
     pathName: menus[0],
     favItems: []
   };
 
-  onItemMovieClick = item => {
-    this.setState({ isShowModal: true, itemMovie: item });
-  };
-
   onModalClickOk = () => {
     // TODO: handle something click ok
-    this.setState({ isShowModal: false });
+    this.props.onDismissDialog();
   };
 
   onModalClickCancel = () => {
-    this.setState({ isShowModal: false });
+    this.props.onDismissDialog();
   };
 
   componentDidMount() {
@@ -73,7 +90,7 @@ class Main extends Component {
   };
 
   render() {
-    const item = this.state.itemMovie;
+    const item = this.props.itemMovieClick;
     return (
       <div>
         {this.state.items.length > 0 ? (
@@ -112,10 +129,7 @@ class Main extends Component {
                   display: 'flex'
                 }}
               >
-                <RouteMenu
-                  items={this.state.items}
-                  onItemMovieClick={this.onItemMovieClick}
-                />
+                <RouteMenu items={this.state.items} />
               </Content>
               <Footer style={{ textAlign: 'center', background: 'white' }}>
                 Movie Application Workshop @ CAMT
@@ -130,7 +144,7 @@ class Main extends Component {
             width="40%"
             style={{ maxHeight: '70%' }}
             title={item.title}
-            visible={this.state.isShowModal}
+            visible={this.props.isShowDialog}
             onCancel={this.onModalClickCancel}
             footer={[
               <Button
@@ -164,4 +178,7 @@ class Main extends Component {
   }
 }
 
-export default Main;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Main);

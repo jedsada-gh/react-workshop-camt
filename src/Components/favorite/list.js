@@ -23,10 +23,7 @@ class ListFavorite extends Component {
           dataSource={this.state.items}
           renderItem={item => (
             <List.Item>
-              <ItemFavorite
-                item={item}
-                onItemMovieClick={this.props.onItemMovieClick}
-              />
+              <ItemFavorite item={item} />
             </List.Item>
           )}
         />

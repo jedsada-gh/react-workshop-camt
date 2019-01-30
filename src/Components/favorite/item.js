@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import { Card } from 'antd';
 import TextTruncate from 'react-text-truncate';
+import { connect } from 'react-redux';
 
 const { Meta } = Card;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onItemMovieClick: item =>
+      dispatch({
+        type: 'click_item',
+        payload: item
+      })
+  };
+};
 
 class ItemFavorite extends Component {
   render() {
@@ -10,7 +21,7 @@ class ItemFavorite extends Component {
     return (
       <Card
         onClick={() => {
-          // this.props.onItemMovieClick(item);
+          this.props.onItemMovieClick(item);
         }}
         hoverable
         cover={<img src={item.image_url} />}
@@ -31,4 +42,7 @@ class ItemFavorite extends Component {
   }
 }
 
-export default ItemFavorite;
+export default connect(
+  null,
+  mapDispatchToProps
+)(ItemFavorite);
