@@ -9,7 +9,8 @@ class Main extends Component {
   state = {
     items: [],
     isShowModal: false,
-    itemMovie: null
+    itemMovie: null,
+    pathName: menus[0]
   };
 
   onItemMovieClick = item => {
@@ -40,7 +41,7 @@ class Main extends Component {
 
   onMenuClick = e => {
     var path = '/';
-    if (e.key != 'home') {
+    if (e.key != 'movies') {
       path = `/${e.key}`;
     }
     this.props.history.replace(path);

@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import ListMovie from '../Components/ListMovie';
 import ListFavorite from '../Components/favorite/list';
-import Profile from '../Components/profile/index';
+import Profile from '../Components/profile';
 
 function RouteMenu(props) {
   return (
