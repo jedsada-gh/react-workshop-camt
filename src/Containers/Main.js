@@ -76,7 +76,16 @@ class Main extends Component {
                   <Menu.Item key={menus[2]}>Profile</Menu.Item>
                 </Menu>
               </Header>
-              <Content style={{ padding: '16px', marginTop: 64 }}>
+              <Content
+                style={{
+                  padding: '16px',
+                  marginTop: 64,
+                  minHeight: '600px',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  display: 'flex'
+                }}
+              >
                 <RouteMenu
                   items={this.state.items}
                   onItemMovieClick={this.onItemMovieClick}
