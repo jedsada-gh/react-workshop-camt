@@ -72,7 +72,7 @@ class Main extends Component {
   };
 
   onClickFavorite = () => {
-    const itemClick = this.state.itemMovie;
+    const itemClick = this.props.itemMovieClick;
     const items = this.state.favItems;
 
     const result = items.find(item => {
