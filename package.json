@@ -73,7 +73,8 @@
     "test": "node scripts/test.js",
     "prettier": "prettier --write \"src/**/*.{js,css}\"",
     "prettier-changefiles": "pretty-quick --staged",
-    "precommit": "yarn run prettier-changefiles"
+    "precommit": "yarn run prettier-changefiles",
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
