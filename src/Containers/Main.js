@@ -68,7 +68,7 @@ class Main extends Component {
     if (e.key != 'movies') {
       path = `/${e.key}`;
     }
-    this.props.history.replace(path);
+    this.props.history.push(path);
   };
 
   onClickFavorite = () => {

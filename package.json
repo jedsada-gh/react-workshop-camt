@@ -62,6 +62,7 @@
   },
   "devDependencies": {
     "eslint-config-prettier": "^4.2.0",
+    "http-server": "^0.11.1",
     "husky": "^1.1.2",
     "lint-staged": "^7.3.0",
     "prettier": "^1.14.2",
@@ -74,7 +75,8 @@
     "prettier": "prettier --write \"src/**/*.{js,css}\"",
     "prettier-changefiles": "pretty-quick --staged",
     "precommit": "yarn run prettier-changefiles",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "start-sw": "http-server ./build"
   },
   "eslintConfig": {
     "extends": "react-app"
